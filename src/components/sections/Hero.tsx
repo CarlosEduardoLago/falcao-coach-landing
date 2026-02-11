@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-primary overflow-hidden pt-20 pb-12 sm:pb-16">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-primary overflow-hidden pt-20 pb-8 sm:pb-10">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -126,20 +126,6 @@ export const Hero: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll Down Arrow */}
-      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <button
-          onClick={() => document.getElementById('sobre')?.scrollIntoView({ behavior: 'smooth' })}
-          className="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors"
-          aria-label="Rolar para baixo"
-        >
-          <span className="text-xs font-medium uppercase tracking-widest">Saiba Mais</span>
-          <svg className="w-6 h-6 animate-scroll-down" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </button>
       </div>
     </section>
   );
