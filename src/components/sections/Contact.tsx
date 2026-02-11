@@ -55,22 +55,26 @@ export const Contact: React.FC = () => {
         document.addEventListener('visibilitychange', handleVisibilityChange);
         window.addEventListener('blur', handleBlur);
 
-        // Tenta abrir o app
-        window.location.href = appLink;
+        // Tenta abrir o app em nova aba
+        const appWindow = window.open(appLink, '_blank');
 
-        // Fallback: se após 500ms o app não abriu, redireciona para web
+        // Fallback: se após 500ms o app não abriu, abre link web em nova aba
         setTimeout(() => {
           if (!appOpened && Date.now() - startTime < 1000) {
             cleanup();
-            window.location.href = instagramWebLink;
+            if (appWindow) {
+              appWindow.location.href = instagramWebLink;
+            } else {
+              window.open(instagramWebLink, '_blank');
+            }
           }
         }, 500);
       } else {
-        // Se não conseguiu determinar o OS, usa link web direto
-        window.location.href = instagramWebLink;
+        // Se não conseguiu determinar o OS, abre link web em nova aba
+        window.open(instagramWebLink, '_blank');
       }
     }
-    // Se não for mobile, deixa o comportamento padrão do link funcionar
+    // Se não for mobile, o comportamento padrão do link já abre em nova aba (target="_blank")
   };
 
   return (
