@@ -10,6 +10,15 @@ export const Contact: React.FC = () => {
   const titleAnim = useScrollAnimation();
   const cardsAnim = useScrollAnimation();
 
+  const handleInstagramClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const url = 'https://www.instagram.com/falcaocoach/';
+    const w = window.open(url, '_blank');
+    if (!w || w.closed) {
+      window.location.href = url;
+    }
+  };
+
   return (
     <section id="contato" className="py-16 md:py-24 bg-dark">
       <div className="container">
@@ -75,6 +84,7 @@ export const Contact: React.FC = () => {
                   href={instagramWebLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleInstagramClick}
                   className="w-full px-6 py-3 text-base border-2 border-white text-white hover:bg-white hover:text-dark rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   Seguir no Instagram
