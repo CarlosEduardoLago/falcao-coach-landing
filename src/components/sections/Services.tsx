@@ -72,11 +72,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ modalidade, title, gradient, 
               variant="outline"
               size="md"
               onClick={() => {
-                document.getElementById('calendario')?.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
               }}
               className="w-full"
             >
-              Ver Calendário Completo
+              Entrar em Contato
             </Button>
           </div>
         </Card>

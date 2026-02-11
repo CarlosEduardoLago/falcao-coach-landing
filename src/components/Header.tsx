@@ -62,12 +62,6 @@ export const Header: React.FC = () => {
               Serviços
             </button>
             <button
-              onClick={() => scrollToSection('calendario')}
-              className="text-white hover:text-primary-start transition-colors font-medium"
-            >
-              Horários
-            </button>
-            <button
               onClick={() => scrollToSection('galeria')}
               className="text-white hover:text-primary-start transition-colors font-medium"
             >
@@ -133,12 +127,6 @@ export const Header: React.FC = () => {
               className="block w-full text-left text-white hover:text-primary-start transition-colors py-2"
             >
               Serviços
-            </button>
-            <button
-              onClick={() => scrollToSection('calendario')}
-              className="block w-full text-left text-white hover:text-primary-start transition-colors py-2"
-            >
-              Horários
             </button>
             <button
               onClick={() => scrollToSection('galeria')}
