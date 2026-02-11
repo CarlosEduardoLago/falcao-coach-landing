@@ -6,9 +6,13 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 export const Contact: React.FC = () => {
   const whatsappLink = 'https://wa.me/message/Z7GXF3B5IGIWD1';
   const instagramUsername = 'falcaocoach';
-  const instagramWebLink = `https://www.instagram.com/${instagramUsername}`;
+  const instagramWebLink = `https://www.instagram.com/${instagramUsername}/`;
   const titleAnim = useScrollAnimation();
   const cardsAnim = useScrollAnimation();
+
+  const openInstagram = () => {
+    window.open(instagramWebLink, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <section id="contato" className="py-16 md:py-24 bg-dark">
@@ -75,6 +79,10 @@ export const Contact: React.FC = () => {
                   href={instagramWebLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openInstagram();
+                  }}
                   className="w-full px-6 py-3 text-base border-2 border-white text-white hover:bg-white hover:text-dark rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   Seguir no Instagram
