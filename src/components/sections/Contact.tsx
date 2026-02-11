@@ -10,15 +10,6 @@ export const Contact: React.FC = () => {
   const titleAnim = useScrollAnimation();
   const cardsAnim = useScrollAnimation();
 
-  const handleInstagramClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isIOS) {
-      e.preventDefault();
-      window.location.href = `instagram://user?username=${instagramUsername}`;
-    }
-    // Android e desktop: deixa o próprio link abrir (href) — o sistema abre no app ou no navegador.
-  };
-
   return (
     <section id="contato" className="py-16 md:py-24 bg-dark">
       <div className="container">
@@ -82,7 +73,6 @@ export const Contact: React.FC = () => {
                 <p className="text-white/80 mb-2">@falcaocoach</p>
                 <a
                   href={instagramWebLink}
-                  onClick={handleInstagramClick}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full px-6 py-3 text-base border-2 border-white text-white hover:bg-white hover:text-dark rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2"
