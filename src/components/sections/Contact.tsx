@@ -20,8 +20,19 @@ export const Contact: React.FC = () => {
       window.location.href = `instagram://user?username=${instagramUsername}`;
     } else if (isAndroid) {
       e.preventDefault();
-      // Usar link HTTPS padrão - Android pode detectar e abrir no app
-      window.open(`https://www.instagram.com/${instagramUsername}/`, '_blank');
+
+      const intentUrl = `intent://instagram.com/_u/${instagramUsername}/#Intent;package=com.instagram.android;scheme=https;end;`;
+      const fallbackTimeout = setTimeout(() => {
+        window.open(instagramWebLink, '_blank');
+      }, 500);
+
+      window.location.href = intentUrl;
+
+      const clearFallback = () => clearTimeout(fallbackTimeout);
+      window.addEventListener('blur', clearFallback, { once: true });
+      window.addEventListener('visibilitychange', () => {
+        if (document.hidden) clearFallback();
+      }, { once: true });
     }
     // Desktop: comportamento padrão do link (abre web em nova aba)
   };
