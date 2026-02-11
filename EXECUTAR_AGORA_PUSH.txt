@@ -1,0 +1,73 @@
+===============================================
+🚀 EXECUTAR PUSH - INSTRUÇÕES FINAIS
+===============================================
+
+Devido a limitações do ambiente, execute os comandos abaixo
+DIRETAMENTE no PowerShell do Windows.
+
+===============================================
+COMANDOS PARA EXECUTAR (COPY/PASTE)
+===============================================
+
+1. Abra PowerShell
+2. Execute os comandos abaixo na ordem:
+
+cd "c:\cursor\Falcão Coach"
+
+git init
+git branch -M main
+
+git add .
+
+git commit -m "feat: landing page inicial do Falcao Coach"
+
+git remote add origin https://github.com/CarlosEduardoLago/falcao-coach-landing.git
+
+git push -u origin main
+
+===============================================
+🔐 AUTENTICAÇÃO
+===============================================
+
+Quando solicitar credenciais:
+
+Username: CarlosEduardoLago
+Password: [Use Personal Access Token - NÃO sua senha]
+
+Como criar token:
+1. https://github.com/settings/tokens
+2. Generate new token (classic)
+3. Nome: "Falcao Coach"
+4. Escopo: repo (todas opções)
+5. Generate token
+6. COPIE o token
+7. Use como senha
+
+===============================================
+✅ APÓS PUSH BEM-SUCEDIDO
+===============================================
+
+1. Configure GitHub Pages:
+   https://github.com/CarlosEduardoLago/falcao-coach-landing/settings/pages
+   → Source: GitHub Actions
+   → Save
+
+2. Acompanhe deploy:
+   https://github.com/CarlosEduardoLago/falcao-coach-landing/actions
+
+3. Acesse o site:
+   https://CarlosEduardoLago.github.io/falcao-coach-landing
+
+===============================================
+📋 SCRIPTS DISPONÍVEIS
+===============================================
+
+Você também pode executar:
+
+.\PUBLICAR.ps1
+
+OU
+
+.\inicializar-e-push.ps1
+
+===============================================

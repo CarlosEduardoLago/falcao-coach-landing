@@ -1,0 +1,79 @@
+===============================================
+EXECUTAR PUSH PARA GITHUB
+===============================================
+
+Repositório: https://github.com/CarlosEduardoLago/falcao-coach-landing
+
+OPÇÃO 1: Script Simplificado (Recomendado)
+-------------------------------------------
+
+No PowerShell, execute:
+
+    cd "c:\cursor\Falcão Coach"
+    .\push-github.ps1
+
+Este script já está configurado com o username correto!
+
+
+OPÇÃO 2: Script Completo
+-------------------------
+
+    cd "c:\cursor\Falcão Coach"
+    .\conectar-github.ps1
+
+(O script usará CarlosEduardoLago como padrão)
+
+
+OPÇÃO 3: Comandos Manuais
+--------------------------
+
+    cd "c:\cursor\Falcão Coach"
+    
+    git remote add origin https://github.com/CarlosEduardoLago/falcao-coach-landing.git
+    git branch -M main
+    git push -u origin main
+
+
+AUTENTICAÇÃO
+------------
+
+Se solicitar credenciais:
+
+1. Crie um Personal Access Token:
+   https://github.com/settings/tokens
+
+2. Clique em "Generate new token (classic)"
+3. Dê um nome (ex: "Falcao Coach")
+4. Marque a opção "repo" (todas as permissões)
+5. Clique em "Generate token"
+6. COPIE o token (só aparece uma vez!)
+7. Use o TOKEN como senha (não sua senha do GitHub)
+
+
+APÓS O PUSH
+-----------
+
+1. Verifique o código no GitHub:
+   https://github.com/CarlosEduardoLago/falcao-coach-landing
+
+2. Configure GitHub Pages:
+   https://github.com/CarlosEduardoLago/falcao-coach-landing/settings/pages
+   
+   - Source: GitHub Actions
+   - Clique em Save
+
+3. Acompanhe o deploy:
+   https://github.com/CarlosEduardoLago/falcao-coach-landing/actions
+
+4. Acesse o site (após deploy):
+   https://CarlosEduardoLago.github.io/falcao-coach-landing
+
+
+VERIFICAÇÃO
+-----------
+
+Execute para verificar status:
+
+    .\verificar-github.ps1
+
+===============================================

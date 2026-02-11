@@ -1,0 +1,17 @@
+===============================================
+COMANDOS RÁPIDOS - COPY/PASTE
+===============================================
+
+Execute no PowerShell:
+
+cd "c:\cursor\Falcão Coach"
+.\inicializar-e-push.ps1
+
+OU (se Git já inicializado):
+
+cd "c:\cursor\Falcão Coach"
+git remote add origin https://github.com/CarlosEduardoLago/falcao-coach-landing.git
+git branch -M main
+git push -u origin main
+
+===============================================

@@ -1,0 +1,129 @@
+===============================================
+🚀 EXECUTAR PUSH INICIAL - INSTRUÇÕES MANUAIS
+===============================================
+
+Devido a limitações do ambiente, execute os comandos abaixo
+diretamente no PowerShell do Windows.
+
+===============================================
+OPÇÃO 1: Script Automático (Recomendado)
+===============================================
+
+1. Abra PowerShell
+2. Navegue até o projeto:
+   
+   cd "c:\cursor\Falcão Coach"
+
+3. Execute o script completo:
+   
+   .\inicializar-e-push.ps1
+
+Este script faz tudo automaticamente:
+- Inicializa Git (se necessário)
+- Adiciona arquivos
+- Cria commit inicial
+- Configura remote
+- Faz push
+
+===============================================
+OPÇÃO 2: Comandos Manuais (Passo a Passo)
+===============================================
+
+1. Abra PowerShell
+2. Navegue até o projeto:
+   
+   cd "c:\cursor\Falcão Coach"
+
+3. Inicializar Git (se ainda não inicializado):
+   
+   git init
+   git branch -M main
+
+4. Configurar Git (se ainda não configurado):
+   
+   git config --global user.name "Seu Nome"
+   git config --global user.email "seu.email@example.com"
+
+5. Adicionar arquivos:
+   
+   git add .
+
+6. Criar commit inicial:
+   
+   git commit -m "feat: landing page inicial do Falcão Coach"
+
+7. Adicionar remote:
+   
+   git remote add origin https://github.com/CarlosEduardoLago/falcao-coach-landing.git
+
+   (Se já existir, use:)
+   git remote set-url origin https://github.com/CarlosEduardoLago/falcao-coach-landing.git
+
+8. Fazer push:
+   
+   git push -u origin main
+
+===============================================
+🔐 AUTENTICAÇÃO
+===============================================
+
+Quando solicitar credenciais:
+
+1. Username: CarlosEduardoLago
+2. Password: Use um Personal Access Token (NÃO sua senha)
+
+Como criar o token:
+
+1. Acesse: https://github.com/settings/tokens
+2. Clique em "Generate new token (classic)"
+3. Dê um nome: "Falcao Coach Landing"
+4. Marque escopo: repo (todas as opções)
+5. Clique em "Generate token"
+6. COPIE o token (só aparece uma vez!)
+7. Use o token como senha quando solicitado
+
+===============================================
+✅ APÓS PUSH BEM-SUCEDIDO
+===============================================
+
+1. Configure GitHub Pages:
+   
+   https://github.com/CarlosEduardoLago/falcao-coach-landing/settings/pages
+   
+   - Source: GitHub Actions
+   - Clique em Save
+
+2. Acompanhe o deploy:
+   
+   https://github.com/CarlosEduardoLago/falcao-coach-landing/actions
+
+3. Acesse o site (após deploy):
+   
+   https://CarlosEduardoLago.github.io/falcao-coach-landing
+
+===============================================
+📋 SCRIPTS DISPONÍVEIS
+===============================================
+
+- inicializar-e-push.ps1    → Faz tudo (recomendado)
+- push-github.ps1            → Push rápido (requer Git inicializado)
+- conectar-github.ps1       → Conecta e faz push
+- verificar-github.ps1       → Verifica status após push
+
+===============================================
+❓ TROUBLESHOOTING
+===============================================
+
+Erro: "Authentication failed"
+→ Use Personal Access Token (não senha)
+
+Erro: "Repository not found"
+→ Verifique se o repositório existe no GitHub
+
+Erro: "fatal: not a git repository"
+→ Execute: git init
+
+Erro: "nothing to commit"
+→ Já existe commit, pode fazer push direto
+
+===============================================

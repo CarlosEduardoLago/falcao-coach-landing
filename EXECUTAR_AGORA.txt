@@ -1,0 +1,52 @@
+===============================================
+INSTRUÇÕES PARA EXECUTAR AGORA
+===============================================
+
+PROBLEMA DETECTADO: Há um arquivo de lock do Git que precisa ser removido.
+
+SOLUÇÃO RÁPIDA:
+
+1. Abra o PowerShell ou CMD como Administrador
+
+2. Execute estes comandos (copie e cole):
+
+   cd "c:\cursor\Falcão Coach"
+   
+   REM Remover lock se existir
+   if exist ".git\config.lock" del ".git\config.lock"
+   
+   REM Inicializar Git
+   git init
+   git branch -M main
+   
+   REM Adicionar arquivos
+   git add .
+   
+   REM Criar commit
+   git commit -m "feat: landing page inicial do Falcão Coach"
+   
+   REM Ver status
+   git status
+
+3. Se tudo funcionou, você verá "nothing to commit" ou a lista de arquivos.
+
+4. PRÓXIMO PASSO - Criar repositório no GitHub:
+   - Acesse: https://github.com/new
+   - Nome: falcao-coach-landing
+   - NÃO marque nenhuma opção
+   - Clique em "Create repository"
+
+5. CONECTAR AO GITHUB (substitua SEU_USUARIO):
+   git remote add origin https://github.com/SEU_USUARIO/falcao-coach-landing.git
+   git push -u origin main
+
+===============================================
+ALTERNATIVA: Execute o arquivo executar-git.ps1
+===============================================
+
+No PowerShell, execute:
+   .\executar-git.ps1
+
+Este script faz tudo automaticamente!
+
+===============================================

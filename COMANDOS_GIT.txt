@@ -1,0 +1,44 @@
+===============================================
+COMANDOS GIT PARA EXECUTAR MANUALMENTE
+===============================================
+
+Execute estes comandos no PowerShell ou CMD, no diretório do projeto:
+
+1. NAVEGAR ATÉ O DIRETÓRIO:
+   cd "c:\cursor\Falcão Coach"
+
+2. INICIALIZAR GIT:
+   git init
+   git branch -M main
+
+3. VERIFICAR CONFIGURAÇÃO (se necessário):
+   git config --global user.name "Seu Nome"
+   git config --global user.email "seu.email@example.com"
+
+4. ADICIONAR ARQUIVOS:
+   git add .
+
+5. CRIAR COMMIT INICIAL:
+   git commit -m "feat: landing page inicial do Falcão Coach
+
+   - Setup completo com React, TypeScript, Vite e Tailwind CSS
+   - Seções: Hero, Sobre, Serviços, Calendário, Galeria e Contato
+   - Animações de scroll e efeitos visuais
+   - Calendário interativo com filtros
+   - Botão flutuante WhatsApp
+   - Design responsivo e moderno"
+
+6. CRIAR REPOSITÓRIO NO GITHUB:
+   - Acesse: https://github.com/new
+   - Nome: falcao-coach-landing
+   - Descrição: Landing page profissional para Falcão Coach
+   - NÃO marque nenhuma opção de inicialização
+   - Clique em "Create repository"
+
+7. CONECTAR AO GITHUB (substitua SEU_USUARIO):
+   git remote add origin https://github.com/SEU_USUARIO/falcao-coach-landing.git
+   git push -u origin main
+
+===============================================
+ALTERNATIVA: Execute o arquivo setup-git.bat
+===============================================
