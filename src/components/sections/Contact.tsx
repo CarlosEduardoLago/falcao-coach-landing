@@ -5,7 +5,7 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 export const Contact: React.FC = () => {
   const whatsappLink = 'https://wa.me/message/Z7GXF3B5IGIWD1';
-  const instagramWebLink = 'https://www.instagram.com/falcaocoach?igsh=ZWJ3eHR2ajIwODN3';
+  const instagramWebLink = 'https://www.instagram.com/falcaocoach';
   const titleAnim = useScrollAnimation();
   const cardsAnim = useScrollAnimation();
 
