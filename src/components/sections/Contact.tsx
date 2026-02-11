@@ -50,14 +50,13 @@ export const Contact: React.FC = () => {
       
       // Estratégia diferente para iOS e Android
       if (isIOS) {
-        // iOS: tentar deep link primeiro
+        // iOS: usar URL scheme nativo do Instagram
         const iosDeepLink = `instagram://user?username=${instagramUsername}`;
         window.location.href = iosDeepLink;
       } else if (isAndroid) {
-        // Android: usar link HTTPS com formato /_u/ que é mais confiável
-        // O sistema operacional detecta e abre no app quando disponível
-        const androidLink = `https://instagram.com/_u/${instagramUsername}`;
-        window.location.href = androidLink;
+        // Android: usar Intent URI que abre diretamente no app
+        const androidIntentLink = `intent://www.instagram.com/${instagramUsername}/#Intent;package=com.instagram.android;scheme=https;end`;
+        window.location.href = androidIntentLink;
       }
       
       // Fallback após 800ms se app não abriu
