@@ -6,8 +6,48 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 export const Contact: React.FC = () => {
   const whatsappLink = 'https://wa.me/message/Z7GXF3B5IGIWD1';
   const instagramLink = 'https://www.instagram.com/falcaocoach?igsh=ZWJ3eHR2ajIwODN3';
+  const instagramAppLink = 'instagram://user?username=falcaocoach';
   const titleAnim = useScrollAnimation();
   const cardsAnim = useScrollAnimation();
+  const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  const handleInstagramClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!isMobileDevice) return;
+
+    event.preventDefault();
+
+    let fallbackTimer = 0;
+
+    const cleanup = () => {
+      if (fallbackTimer) {
+        window.clearTimeout(fallbackTimer);
+      }
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('pagehide', handlePageHide);
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        cleanup();
+      }
+    };
+
+    const handlePageHide = () => {
+      cleanup();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('pagehide', handlePageHide);
+
+    fallbackTimer = window.setTimeout(() => {
+      cleanup();
+      if (!document.hidden) {
+        window.location.assign(instagramLink);
+      }
+    }, 900);
+
+    window.location.assign(instagramAppLink);
+  };
 
   return (
     <section id="contato" className="py-16 md:py-24 bg-dark">
@@ -72,6 +112,7 @@ export const Contact: React.FC = () => {
                 <p className="text-white/80 mb-2">@falcaocoach</p>
                 <a
                   href={instagramLink}
+                  onClick={handleInstagramClick}
                   className="w-full px-6 py-3 text-base border-2 border-white text-white hover:bg-white hover:text-dark rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   Seguir no Instagram
