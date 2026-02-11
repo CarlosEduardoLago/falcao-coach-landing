@@ -70,14 +70,12 @@ export const Contact: React.FC = () => {
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold mb-2">Instagram</h3>
                 <p className="text-white/80 mb-2">@falcaocoach</p>
-                <Button
-                  variant="outline"
-                  size="md"
-                  onClick={() => window.location.assign(instagramLink)}
-                  className="w-full"
+                <a
+                  href={instagramLink}
+                  className="w-full px-6 py-3 text-base border-2 border-white text-white hover:bg-white hover:text-dark rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   Seguir no Instagram
-                </Button>
+                </a>
               </Card>
             </div>
           </div>
