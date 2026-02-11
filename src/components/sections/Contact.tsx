@@ -54,20 +54,18 @@ export const Contact: React.FC = () => {
         const iosDeepLink = `instagram://user?username=${instagramUsername}`;
         window.location.href = iosDeepLink;
       } else if (isAndroid) {
-        // Android: tentar múltiplos formatos para garantir que funcione
-        // Formato 1: Intent URI com _u/ (formato recomendado)
-        const androidIntentLink = `intent://instagram.com/_u/${instagramUsername}#Intent;package=com.instagram.android;scheme=https;action=android.intent.action.VIEW;end`;
-        // Formato 2: URL scheme direto do Instagram (funciona em alguns Android)
+        // Android: tentar formato mais simples do Intent URI
+        // Usar apenas o username direto sem _u/ pode funcionar melhor
+        const androidIntentLink = `intent://www.instagram.com/${instagramUsername}/#Intent;package=com.instagram.android;scheme=https;end`;
         const androidSchemeLink = `instagram://user?username=${instagramUsername}`;
         
-        // Tentar primeiro com Intent URI usando elemento <a>
+        // Tentar primeiro com Intent URI simples
         const link = document.createElement('a');
         link.href = androidIntentLink;
         link.style.display = 'none';
         document.body.appendChild(link);
         link.click();
         
-        // Remover link após um tempo
         setTimeout(() => {
           if (document.body.contains(link)) {
             document.body.removeChild(link);
@@ -77,9 +75,9 @@ export const Contact: React.FC = () => {
           if (!appOpened) {
             setTimeout(() => {
               window.location.href = androidSchemeLink;
-            }, 300);
+            }, 400);
           }
-        }, 500);
+        }, 600);
       }
       
       // Fallback após 1500ms se app não abriu
