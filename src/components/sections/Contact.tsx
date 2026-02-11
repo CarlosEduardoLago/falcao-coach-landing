@@ -5,9 +5,73 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 export const Contact: React.FC = () => {
   const whatsappLink = 'https://wa.me/message/Z7GXF3B5IGIWD1';
-  const instagramLink = 'https://www.instagram.com/falcaocoach?igsh=ZWJ3eHR2ajIwODN3';
+  const instagramWebLink = 'https://www.instagram.com/falcaocoach?igsh=ZWJ3eHR2ajIwODN3';
+  const instagramUsername = 'falcaocoach';
   const titleAnim = useScrollAnimation();
   const cardsAnim = useScrollAnimation();
+
+  const handleInstagramClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Detecta se é mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      e.preventDefault();
+      
+      let appLink = '';
+      
+      if (isIOS) {
+        // iOS: usa o esquema instagram://
+        appLink = `instagram://user?username=${instagramUsername}`;
+      } else if (isAndroid) {
+        // Android: usa intent:// que funciona melhor
+        appLink = `intent://www.instagram.com/${instagramUsername}#Intent;package=com.instagram.android;scheme=https;end`;
+      }
+
+      // Tenta abrir o app primeiro
+      if (appLink) {
+        const startTime = Date.now();
+        let appOpened = false;
+
+        // Listener para detectar se o app foi aberto (página fica oculta)
+        const handleVisibilityChange = () => {
+          if (document.hidden) {
+            appOpened = true;
+            cleanup();
+          }
+        };
+
+        const handleBlur = () => {
+          appOpened = true;
+          cleanup();
+        };
+
+        const cleanup = () => {
+          document.removeEventListener('visibilitychange', handleVisibilityChange);
+          window.removeEventListener('blur', handleBlur);
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        window.addEventListener('blur', handleBlur);
+
+        // Tenta abrir o app
+        window.location.href = appLink;
+
+        // Fallback: se após 500ms o app não abriu, redireciona para web
+        setTimeout(() => {
+          if (!appOpened && Date.now() - startTime < 1000) {
+            cleanup();
+            window.location.href = instagramWebLink;
+          }
+        }, 500);
+      } else {
+        // Se não conseguiu determinar o OS, usa link web direto
+        window.location.href = instagramWebLink;
+      }
+    }
+    // Se não for mobile, deixa o comportamento padrão do link funcionar
+  };
 
   return (
     <section id="contato" className="py-16 md:py-24 bg-dark">
@@ -71,7 +135,10 @@ export const Contact: React.FC = () => {
                 <h3 className="text-xl sm:text-2xl font-bold mb-2">Instagram</h3>
                 <p className="text-white/80 mb-2">@falcaocoach</p>
                 <a
-                  href={instagramLink}
+                  href={instagramWebLink}
+                  onClick={handleInstagramClick}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full px-6 py-3 text-base border-2 border-white text-white hover:bg-white hover:text-dark rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   Seguir no Instagram
