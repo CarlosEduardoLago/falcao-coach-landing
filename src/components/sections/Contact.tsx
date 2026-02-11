@@ -6,76 +6,8 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 export const Contact: React.FC = () => {
   const whatsappLink = 'https://wa.me/message/Z7GXF3B5IGIWD1';
   const instagramWebLink = 'https://www.instagram.com/falcaocoach?igsh=ZWJ3eHR2ajIwODN3';
-  const instagramUsername = 'falcaocoach';
   const titleAnim = useScrollAnimation();
   const cardsAnim = useScrollAnimation();
-
-  const handleInstagramClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Detecta se é mobile
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isAndroid = /Android/i.test(navigator.userAgent);
-
-    if (isMobile) {
-      e.preventDefault();
-      
-      let appLink = '';
-      
-      if (isIOS) {
-        // iOS: usa o esquema instagram://
-        appLink = `instagram://user?username=${instagramUsername}`;
-      } else if (isAndroid) {
-        // Android: usa intent:// que funciona melhor
-        appLink = `intent://www.instagram.com/${instagramUsername}#Intent;package=com.instagram.android;scheme=https;end`;
-      }
-
-      // Tenta abrir o app primeiro
-      if (appLink) {
-        const startTime = Date.now();
-        let appOpened = false;
-
-        // Listener para detectar se o app foi aberto (página fica oculta)
-        const handleVisibilityChange = () => {
-          if (document.hidden) {
-            appOpened = true;
-            cleanup();
-          }
-        };
-
-        const handleBlur = () => {
-          appOpened = true;
-          cleanup();
-        };
-
-        const cleanup = () => {
-          document.removeEventListener('visibilitychange', handleVisibilityChange);
-          window.removeEventListener('blur', handleBlur);
-        };
-
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-        window.addEventListener('blur', handleBlur);
-
-        // Tenta abrir o app em nova aba
-        const appWindow = window.open(appLink, '_blank');
-
-        // Fallback: se após 500ms o app não abriu, abre link web em nova aba
-        setTimeout(() => {
-          if (!appOpened && Date.now() - startTime < 1000) {
-            cleanup();
-            if (appWindow) {
-              appWindow.location.href = instagramWebLink;
-            } else {
-              window.open(instagramWebLink, '_blank');
-            }
-          }
-        }, 500);
-      } else {
-        // Se não conseguiu determinar o OS, abre link web em nova aba
-        window.open(instagramWebLink, '_blank');
-      }
-    }
-    // Se não for mobile, o comportamento padrão do link já abre em nova aba (target="_blank")
-  };
 
   return (
     <section id="contato" className="py-16 md:py-24 bg-dark">
@@ -140,7 +72,6 @@ export const Contact: React.FC = () => {
                 <p className="text-white/80 mb-2">@falcaocoach</p>
                 <a
                   href={instagramWebLink}
-                  onClick={handleInstagramClick}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full px-6 py-3 text-base border-2 border-white text-white hover:bg-white hover:text-dark rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2"
