@@ -115,7 +115,7 @@ export const Header: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-2">
+          <div className="md:hidden mt-4 pb-4 space-y-2 flex flex-col items-start">
             <button
               onClick={() => scrollToSection('sobre')}
               className="block w-full text-left text-white hover:text-primary-start transition-colors py-2"
@@ -140,17 +140,6 @@ export const Header: React.FC = () => {
             >
               Contato
             </button>
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => {
-                window.open(whatsappLink, '_blank');
-                setIsMobileMenuOpen(false);
-              }}
-              className="w-full mt-4"
-            >
-              WhatsApp
-            </Button>
           </div>
         )}
       </nav>
