@@ -73,7 +73,7 @@ export const Contact: React.FC = () => {
                 <Button
                   variant="outline"
                   size="md"
-                  onClick={() => window.open(instagramLink, '_blank')}
+                  onClick={() => window.location.assign(instagramLink)}
                   className="w-full"
                 >
                   Seguir no Instagram
