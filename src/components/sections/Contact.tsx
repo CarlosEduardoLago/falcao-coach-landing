@@ -54,28 +54,30 @@ export const Contact: React.FC = () => {
         const iosDeepLink = `instagram://user?username=${instagramUsername}`;
         window.location.href = iosDeepLink;
       } else if (isAndroid) {
-        // Android: usar iframe oculto para abrir o deep link
-        // Esta técnica funciona melhor em navegadores Android
-        const androidIntentLink = `intent://www.instagram.com/${instagramUsername}/#Intent;package=com.instagram.android;scheme=https;end`;
+        // Android: tentar múltiplos formatos para garantir que funcione
+        // Formato 1: Intent URI com _u/ (formato recomendado)
+        const androidIntentLink = `intent://instagram.com/_u/${instagramUsername}#Intent;package=com.instagram.android;scheme=https;action=android.intent.action.VIEW;end`;
+        // Formato 2: URL scheme direto do Instagram (funciona em alguns Android)
         const androidSchemeLink = `instagram://user?username=${instagramUsername}`;
         
-        // Criar iframe oculto com o Intent URI
-        const iframe = document.createElement('iframe');
-        iframe.style.border = 'none';
-        iframe.style.width = '0';
-        iframe.style.height = '0';
-        iframe.style.display = 'none';
-        iframe.src = androidIntentLink;
-        document.body.appendChild(iframe);
+        // Tentar primeiro com Intent URI usando elemento <a>
+        const link = document.createElement('a');
+        link.href = androidIntentLink;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
         
-        // Remover iframe após tentativa
+        // Remover link após um tempo
         setTimeout(() => {
-          if (document.body.contains(iframe)) {
-            document.body.removeChild(iframe);
+          if (document.body.contains(link)) {
+            document.body.removeChild(link);
           }
-          // Se não abriu, tentar URL scheme direto
+          
+          // Se não funcionou, tentar URL scheme direto
           if (!appOpened) {
-            window.location.href = androidSchemeLink;
+            setTimeout(() => {
+              window.location.href = androidSchemeLink;
+            }, 300);
           }
         }, 500);
       }
