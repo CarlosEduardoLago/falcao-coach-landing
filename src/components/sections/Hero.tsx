@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Logo } from '../ui/Logo';
 import { Button } from '../ui/Button';
 
 const particles = Array.from({ length: 8 }, (_, i) => ({
@@ -49,14 +48,6 @@ export const Hero: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
           {/* Left Side - Content */}
           <div className="flex-1 text-center md:text-left">
-            <div
-              className={`flex justify-center md:justify-start mb-6 transition-all duration-700 ${
-                isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-            >
-              <Logo size="xl" />
-            </div>
-            
             <h1
               className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white transition-all duration-700 delay-100 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
