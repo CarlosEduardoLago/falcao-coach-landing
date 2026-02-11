@@ -54,18 +54,39 @@ export const Contact: React.FC = () => {
         const iosDeepLink = `instagram://user?username=${instagramUsername}`;
         window.location.href = iosDeepLink;
       } else if (isAndroid) {
-        // Android: usar Intent URI que abre diretamente no app
+        // Android: usar iframe oculto para abrir o deep link
+        // Esta técnica funciona melhor em navegadores Android
         const androidIntentLink = `intent://www.instagram.com/${instagramUsername}/#Intent;package=com.instagram.android;scheme=https;end`;
-        window.location.href = androidIntentLink;
+        const androidSchemeLink = `instagram://user?username=${instagramUsername}`;
+        
+        // Criar iframe oculto com o Intent URI
+        const iframe = document.createElement('iframe');
+        iframe.style.border = 'none';
+        iframe.style.width = '0';
+        iframe.style.height = '0';
+        iframe.style.display = 'none';
+        iframe.src = androidIntentLink;
+        document.body.appendChild(iframe);
+        
+        // Remover iframe após tentativa
+        setTimeout(() => {
+          if (document.body.contains(iframe)) {
+            document.body.removeChild(iframe);
+          }
+          // Se não abriu, tentar URL scheme direto
+          if (!appOpened) {
+            window.location.href = androidSchemeLink;
+          }
+        }, 500);
       }
       
-      // Fallback após 800ms se app não abriu
+      // Fallback após 1500ms se app não abriu
       setTimeout(() => {
         if (!appOpened) {
           cleanup();
           window.open(instagramWebLink, '_blank');
         }
-      }, 800);
+      }, 1500);
     }
     // Desktop: comportamento padrão do link (abre web em nova aba)
   };
