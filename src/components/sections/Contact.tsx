@@ -14,69 +14,14 @@ export const Contact: React.FC = () => {
     const userAgent = navigator.userAgent;
     const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
     const isAndroid = /Android/i.test(userAgent);
-    const isMobile = isIOS || isAndroid;
     
-    if (isMobile) {
+    if (isIOS) {
       e.preventDefault();
-      
-      let appOpened = false;
-      
-      const cleanup = () => {
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-        window.removeEventListener('blur', handleBlur);
-        window.removeEventListener('pagehide', handlePageHide);
-      };
-      
-      const handleVisibilityChange = () => {
-        if (document.hidden) {
-          appOpened = true;
-          cleanup();
-        }
-      };
-      
-      const handleBlur = () => {
-        appOpened = true;
-        cleanup();
-      };
-      
-      const handlePageHide = () => {
-        appOpened = true;
-        cleanup();
-      };
-      
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-      window.addEventListener('blur', handleBlur);
-      window.addEventListener('pagehide', handlePageHide);
-      
-      // Estratégia diferente para iOS e Android
-      if (isIOS) {
-        // iOS: usar URL scheme nativo do Instagram
-        const iosDeepLink = `instagram://user?username=${instagramUsername}`;
-        window.location.href = iosDeepLink;
-      } else if (isAndroid) {
-        // Android: usar formato HTTPS que o Instagram Android reconhece
-        // O formato https://instagram.com/_u/USERNAME funciona melhor que intent://
-        const androidAppLink = `https://instagram.com/_u/${instagramUsername}`;
-        
-        // Tentar abrir usando window.location - o Android pode detectar e abrir no app
-        window.location.href = androidAppLink;
-        
-        // Se não abrir o app em 800ms, abrir link web como fallback
-        setTimeout(() => {
-          if (!appOpened) {
-            cleanup();
-            window.open(instagramWebLink, '_blank');
-          }
-        }, 800);
-      }
-      
-      // Fallback após 1500ms se app não abriu
-      setTimeout(() => {
-        if (!appOpened) {
-          cleanup();
-          window.open(instagramWebLink, '_blank');
-        }
-      }, 1500);
+      window.location.href = `instagram://user?username=${instagramUsername}`;
+    } else if (isAndroid) {
+      e.preventDefault();
+      // Usar link HTTPS padrão - Android pode detectar e abrir no app
+      window.open(`https://www.instagram.com/${instagramUsername}/`, '_blank');
     }
     // Desktop: comportamento padrão do link (abre web em nova aba)
   };
