@@ -11,30 +11,12 @@ export const Contact: React.FC = () => {
   const cardsAnim = useScrollAnimation();
 
   const handleInstagramClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const userAgent = navigator.userAgent;
-    const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
-    const isAndroid = /Android/i.test(userAgent);
-    
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     if (isIOS) {
       e.preventDefault();
       window.location.href = `instagram://user?username=${instagramUsername}`;
-    } else if (isAndroid) {
-      e.preventDefault();
-
-      const intentUrl = `intent://instagram.com/_u/${instagramUsername}/#Intent;package=com.instagram.android;scheme=https;end;`;
-      const fallbackTimeout = setTimeout(() => {
-        window.open(instagramWebLink, '_blank');
-      }, 500);
-
-      window.location.href = intentUrl;
-
-      const clearFallback = () => clearTimeout(fallbackTimeout);
-      window.addEventListener('blur', clearFallback, { once: true });
-      window.addEventListener('visibilitychange', () => {
-        if (document.hidden) clearFallback();
-      }, { once: true });
     }
-    // Desktop: comportamento padrão do link (abre web em nova aba)
+    // Android e desktop: deixa o próprio link abrir (href) — o sistema abre no app ou no navegador.
   };
 
   return (
