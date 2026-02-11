@@ -54,30 +54,20 @@ export const Contact: React.FC = () => {
         const iosDeepLink = `instagram://user?username=${instagramUsername}`;
         window.location.href = iosDeepLink;
       } else if (isAndroid) {
-        // Android: tentar formato mais simples do Intent URI
-        // Usar apenas o username direto sem _u/ pode funcionar melhor
-        const androidIntentLink = `intent://www.instagram.com/${instagramUsername}/#Intent;package=com.instagram.android;scheme=https;end`;
-        const androidSchemeLink = `instagram://user?username=${instagramUsername}`;
+        // Android: usar formato HTTPS que o Instagram Android reconhece
+        // O formato https://instagram.com/_u/USERNAME funciona melhor que intent://
+        const androidAppLink = `https://instagram.com/_u/${instagramUsername}`;
         
-        // Tentar primeiro com Intent URI simples
-        const link = document.createElement('a');
-        link.href = androidIntentLink;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
+        // Tentar abrir usando window.location - o Android pode detectar e abrir no app
+        window.location.href = androidAppLink;
         
+        // Se não abrir o app em 800ms, abrir link web como fallback
         setTimeout(() => {
-          if (document.body.contains(link)) {
-            document.body.removeChild(link);
-          }
-          
-          // Se não funcionou, tentar URL scheme direto
           if (!appOpened) {
-            setTimeout(() => {
-              window.location.href = androidSchemeLink;
-            }, 400);
+            cleanup();
+            window.open(instagramWebLink, '_blank');
           }
-        }, 600);
+        }, 800);
       }
       
       // Fallback após 1500ms se app não abriu
