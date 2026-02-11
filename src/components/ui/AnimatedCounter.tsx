@@ -58,14 +58,14 @@ export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   }, [hasAnimated, target, duration]);
 
   return (
-    <div ref={ref} className="text-center p-6">
-      <div className="w-14 h-14 mx-auto mb-4 bg-white/10 rounded-xl flex items-center justify-center">
+    <div ref={ref} className="text-center p-4 sm:p-6">
+      <div className="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 bg-white/10 rounded-xl flex items-center justify-center">
         {icon}
       </div>
-      <p className="text-4xl md:text-5xl font-bold text-gradient-primary mb-2">
+      <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient-primary mb-2">
         {prefix}{count}{suffix}
       </p>
-      <p className="text-gray-400 font-medium">{label}</p>
+      <p className="text-gray-400 font-medium text-xs sm:text-sm leading-tight break-words">{label}</p>
     </div>
   );
 };

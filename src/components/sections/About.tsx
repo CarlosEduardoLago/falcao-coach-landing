@@ -10,12 +10,12 @@ export const About: React.FC = () => {
   const countersAnim = useScrollAnimation();
 
   return (
-    <section id="sobre" className="py-16 md:py-24 bg-dark">
-      <div className="container mx-auto px-4">
+    <section id="sobre" className="py-16 md:py-24 bg-dark overflow-hidden">
+      <div className="container">
         <div className="max-w-6xl mx-auto">
           <div ref={titleAnim.ref}>
             <h2
-              className={`text-4xl md:text-5xl font-bold text-center mb-12 text-gradient-primary transition-all duration-700 ${
+              className={`text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 sm:mb-12 text-gradient-primary transition-all duration-700 ${
                 titleAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -23,7 +23,7 @@ export const About: React.FC = () => {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Side - Image */}
             <div ref={imageAnim.ref} className="order-2 md:order-1">
               <div
@@ -31,12 +31,12 @@ export const About: React.FC = () => {
                   imageAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
                 }`}
               >
-                <div className="w-full h-96 bg-gradient-to-br from-primary-start to-primary-end flex items-center justify-center">
-                  <div className="text-center text-white p-8">
+                <div className="w-full h-72 sm:h-80 md:h-96 bg-gradient-to-br from-primary-start to-primary-end flex items-center justify-center">
+                  <div className="text-center text-white p-6 sm:p-8">
                     <svg className="w-32 h-32 mx-auto mb-4 opacity-50" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     </svg>
-                    <p className="text-sm opacity-75">Foto do Falcão Coach</p>
+                    <p className="text-xs sm:text-sm opacity-75">Foto do Falcão Coach</p>
                   </div>
                 </div>
               </div>
@@ -45,7 +45,7 @@ export const About: React.FC = () => {
             {/* Right Side - Content */}
             <div ref={contentAnim.ref} className="order-1 md:order-2 space-y-6">
               <p
-                className={`text-lg md:text-xl text-gray-300 leading-relaxed transition-all duration-700 ${
+                className={`text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed transition-all duration-700 ${
                   contentAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
                 }`}
               >
@@ -61,7 +61,7 @@ export const About: React.FC = () => {
                     contentAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
                   }`}
                 >
-                  <Card variant="gradient-primary" className="p-6 card-glow-primary">
+                  <Card variant="gradient-primary" className="p-5 sm:p-6 card-glow-primary">
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@ export const About: React.FC = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-2">
+                        <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
                           Treinador de Vôlei de Praia e Indoor
                         </h3>
                         <p className="text-white/90">
@@ -85,7 +85,7 @@ export const About: React.FC = () => {
                     contentAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
                   }`}
                 >
-                  <Card variant="gradient-secondary" className="p-6 card-glow-secondary">
+                  <Card variant="gradient-secondary" className="p-5 sm:p-6 card-glow-secondary">
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@ export const About: React.FC = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-2">
+                        <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
                           Licenciatura em Educação Física
                         </h3>
                         <p className="text-white/90">
@@ -108,9 +108,9 @@ export const About: React.FC = () => {
           </div>
 
           {/* Animated Counters */}
-          <div ref={countersAnim.ref} className="mt-16">
+          <div ref={countersAnim.ref} className="mt-12 sm:mt-16">
             <div
-              className={`grid grid-cols-2 md:grid-cols-4 gap-4 glass rounded-2xl p-4 transition-all duration-700 ${
+              className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 glass rounded-2xl p-3 sm:p-4 transition-all duration-700 ${
                 countersAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >

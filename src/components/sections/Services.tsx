@@ -39,12 +39,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ modalidade, title, gradient, 
         }`}
         style={{ transitionDelay: delay }}
       >
-        <Card variant={gradient} className={`p-8 text-white ${glowClass}`}>
+        <Card variant={gradient} className={`p-5 sm:p-6 md:p-8 text-white ${glowClass}`}>
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center group-hover:rotate-6 transition-transform">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-lg flex items-center justify-center group-hover:rotate-6 transition-transform">
               {icon}
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold">{title}</h3>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold">{title}</h3>
           </div>
 
           <div className="space-y-6">
@@ -52,7 +52,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ modalidade, title, gradient, 
               const horariosNivel = horariosModalidade.filter(h => h.nivel === nivel);
               return (
                 <div key={nivel} className="bg-white/10 rounded-lg p-4 hover:bg-white/15 transition-colors">
-                  <h4 className="text-xl font-bold mb-3">{NIVEL_LABELS[nivel]}</h4>
+                  <h4 className="text-lg sm:text-xl font-bold mb-3">{NIVEL_LABELS[nivel]}</h4>
                   <div className="space-y-2">
                     {horariosNivel.map((horario) => (
                       <div key={horario.id} className="text-white/90">
@@ -90,18 +90,18 @@ export const Services: React.FC = () => {
 
   return (
     <section id="servicos" className="py-16 md:py-24 bg-dark-gray">
-      <div className="container mx-auto px-4">
+      <div className="container">
         <div className="max-w-6xl mx-auto">
           <div ref={titleAnim.ref}>
             <h2
-              className={`text-4xl md:text-5xl font-bold text-center mb-4 text-gradient-primary transition-all duration-700 ${
+              className={`text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 text-gradient-primary transition-all duration-700 ${
                 titleAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
               Nossos Serviços
             </h2>
             <p
-              className={`text-center text-gray-400 mb-12 text-lg transition-all duration-700 delay-200 ${
+              className={`text-center text-gray-400 mb-10 sm:mb-12 text-base sm:text-lg transition-all duration-700 delay-200 ${
                 titleAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -109,7 +109,7 @@ export const Services: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             <ServiceCard
               modalidade="praia"
               title="Vôlei de Praia"

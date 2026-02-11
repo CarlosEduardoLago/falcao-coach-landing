@@ -6,13 +6,13 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="bg-dark-gray py-8 border-t border-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
+      <div className="container">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6">
+          <div className="flex items-center gap-3 text-center md:text-left">
             <Logo size="sm" />
-            <div>
+            <div className="min-w-0">
               <p className="text-white font-semibold">Falcão Coach</p>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm break-words">
                 Treinador de Vôlei de Praia e Indoor Nível III - CBV
               </p>
             </div>

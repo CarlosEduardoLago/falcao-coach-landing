@@ -54,19 +54,19 @@ export const Gallery: React.FC = () => {
 
   return (
     <>
-      <section id="galeria" className="py-16 md:py-24 bg-dark-gray">
-        <div className="container mx-auto px-4">
+      <section id="galeria" className="py-16 md:py-24 bg-dark-gray overflow-hidden">
+        <div className="container">
           <div className="max-w-7xl mx-auto">
             <div ref={titleAnim.ref}>
               <h2
-                className={`text-4xl md:text-5xl font-bold text-center mb-4 text-gradient-primary transition-all duration-700 ${
+                className={`text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 text-gradient-primary transition-all duration-700 ${
                   titleAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
                 Galeria
               </h2>
               <p
-                className={`text-center text-gray-400 mb-12 text-lg transition-all duration-700 delay-200 ${
+                className={`text-center text-gray-400 mb-10 sm:mb-12 text-base sm:text-lg transition-all duration-700 delay-200 ${
                   titleAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
@@ -75,7 +75,7 @@ export const Gallery: React.FC = () => {
             </div>
 
             {/* Masonry Grid */}
-            <div ref={gridAnim.ref} className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+            <div ref={gridAnim.ref} className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6 overflow-hidden">
               {placeholderImages.map((image, index) => (
                 <div
                   key={image.id}
@@ -86,11 +86,11 @@ export const Gallery: React.FC = () => {
                   onClick={() => openLightbox(image.id)}
                 >
                   <div
-                    className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.03]"
+                    className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 sm:hover:scale-[1.03]"
                     style={{ height: image.height }}
                   >
                     <div className="w-full h-full bg-gradient-to-br from-primary-start to-secondary-end flex items-center justify-center">
-                      <div className="text-center text-white p-8 opacity-40 group-hover:opacity-80 transition-opacity duration-300">
+                      <div className="text-center text-white p-6 sm:p-8 opacity-40 group-hover:opacity-80 transition-opacity duration-300">
                         <svg className="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
                         </svg>
@@ -115,17 +115,17 @@ export const Gallery: React.FC = () => {
       {/* Lightbox */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fade-up"
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-3 sm:p-4 animate-fade-up"
           style={{ animationDuration: '0.2s' }}
           onClick={closeLightbox}
         >
           {/* Close button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors z-10"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 text-white/70 hover:text-white transition-colors z-10 bg-black/30 rounded-full p-1.5 sm:p-0"
             aria-label="Fechar"
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -133,10 +133,10 @@ export const Gallery: React.FC = () => {
           {/* Navigation - Previous */}
           <button
             onClick={(e) => { e.stopPropagation(); navigateImage('prev'); }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
+            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors p-1.5 sm:p-2 hover:bg-white/10 rounded-full"
             aria-label="Anterior"
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -144,30 +144,30 @@ export const Gallery: React.FC = () => {
           {/* Navigation - Next */}
           <button
             onClick={(e) => { e.stopPropagation(); navigateImage('next'); }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
+            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors p-1.5 sm:p-2 hover:bg-white/10 rounded-full"
             aria-label="Próximo"
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
           {/* Image counter */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-sm">
+          <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-xs sm:text-sm">
             {selectedImage} / {placeholderImages.length}
           </div>
 
           {/* Main content */}
           <div
-            className="max-w-4xl w-full aspect-video bg-gradient-to-br from-primary-start to-secondary-end flex items-center justify-center rounded-xl shadow-2xl animate-scale-in"
+            className="max-w-4xl w-full aspect-[4/3] sm:aspect-video bg-gradient-to-br from-primary-start to-secondary-end flex items-center justify-center rounded-lg sm:rounded-xl shadow-2xl animate-scale-in"
             style={{ animationDuration: '0.3s' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="text-center text-white p-8">
-              <svg className="w-24 h-24 mx-auto mb-4 opacity-50" fill="currentColor" viewBox="0 0 24 24">
+            <div className="text-center text-white p-4 sm:p-8">
+              <svg className="w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4 opacity-50" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
               </svg>
-              <p className="text-lg">{placeholderImages[selectedImage - 1]?.description}</p>
+              <p className="text-sm sm:text-lg">{placeholderImages[selectedImage - 1]?.description}</p>
             </div>
           </div>
         </div>

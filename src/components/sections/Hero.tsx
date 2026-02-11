@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-primary overflow-hidden pt-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-primary overflow-hidden pt-20 pb-12 sm:pb-16">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -45,8 +45,8 @@ export const Hero: React.FC = () => {
         />
       ))}
 
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+      <div className="container py-12 sm:py-16 md:py-20 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
           {/* Left Side - Content */}
           <div className="flex-1 text-center md:text-left">
             <div
@@ -58,7 +58,7 @@ export const Hero: React.FC = () => {
             </div>
             
             <h1
-              className={`text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white transition-all duration-700 delay-100 ${
+              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 text-white transition-all duration-700 delay-100 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
             >
@@ -66,7 +66,7 @@ export const Hero: React.FC = () => {
             </h1>
             
             <p
-              className={`text-xl md:text-2xl lg:text-3xl mb-6 text-white/90 font-medium transition-all duration-700 delay-200 ${
+              className={`text-base sm:text-xl md:text-2xl lg:text-3xl mb-6 text-white/90 font-medium transition-all duration-700 delay-200 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
             >
@@ -74,7 +74,7 @@ export const Hero: React.FC = () => {
             </p>
             
             <p
-              className={`text-lg md:text-xl mb-8 text-white/80 transition-all duration-700 delay-300 ${
+              className={`text-base sm:text-lg md:text-xl mb-8 text-white/80 transition-all duration-700 delay-300 ${
                 isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
             >
@@ -109,14 +109,14 @@ export const Hero: React.FC = () => {
             }`}
           >
             <div className="relative">
-              <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white shadow-2xl animate-float" style={{ animationDuration: '5s' }}>
+              <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white shadow-2xl animate-float" style={{ animationDuration: '5s' }}>
                 {/* Placeholder para foto do coach */}
                 <div className="w-full h-full bg-gradient-to-br from-secondary-start to-secondary-end flex items-center justify-center">
-                  <div className="text-center text-white p-8">
+                  <div className="text-center text-white p-6 sm:p-8">
                     <svg className="w-24 h-24 mx-auto mb-4 opacity-50" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     </svg>
-                    <p className="text-sm opacity-75">Foto do Falcão Coach</p>
+                    <p className="text-xs sm:text-sm opacity-75">Foto do Falcão Coach</p>
                   </div>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Scroll Down Arrow */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-10">
         <button
           onClick={() => document.getElementById('sobre')?.scrollIntoView({ behavior: 'smooth' })}
           className="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors"

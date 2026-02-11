@@ -10,7 +10,7 @@ import { WaveDivider } from './components/ui/WaveDivider';
 
 function App() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Header />
       <Hero />
       <WaveDivider from="#F7931E" to="#1A1A1A" />
