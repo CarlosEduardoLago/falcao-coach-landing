@@ -7,12 +7,14 @@ export const Contact: React.FC = () => {
   const whatsappLink = 'https://wa.me/message/Z7GXF3B5IGIWD1';
   const instagramUsername = 'falcaocoach';
   const instagramWebLink = `https://www.instagram.com/${instagramUsername}`;
-  const instagramAppLink = `instagram://user?username=${instagramUsername}`;
   const titleAnim = useScrollAnimation();
   const cardsAnim = useScrollAnimation();
 
   const handleInstagramClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const userAgent = navigator.userAgent;
+    const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+    const isAndroid = /Android/i.test(userAgent);
+    const isMobile = isIOS || isAndroid;
     
     if (isMobile) {
       e.preventDefault();
@@ -22,6 +24,7 @@ export const Contact: React.FC = () => {
       const cleanup = () => {
         document.removeEventListener('visibilitychange', handleVisibilityChange);
         window.removeEventListener('blur', handleBlur);
+        window.removeEventListener('pagehide', handlePageHide);
       };
       
       const handleVisibilityChange = () => {
@@ -36,19 +39,34 @@ export const Contact: React.FC = () => {
         cleanup();
       };
       
+      const handlePageHide = () => {
+        appOpened = true;
+        cleanup();
+      };
+      
       document.addEventListener('visibilitychange', handleVisibilityChange);
       window.addEventListener('blur', handleBlur);
+      window.addEventListener('pagehide', handlePageHide);
       
-      // Tentar abrir app
-      window.location.href = instagramAppLink;
+      // Estratégia diferente para iOS e Android
+      if (isIOS) {
+        // iOS: tentar deep link primeiro
+        const iosDeepLink = `instagram://user?username=${instagramUsername}`;
+        window.location.href = iosDeepLink;
+      } else if (isAndroid) {
+        // Android: usar link HTTPS com formato /_u/ que é mais confiável
+        // O sistema operacional detecta e abre no app quando disponível
+        const androidLink = `https://instagram.com/_u/${instagramUsername}`;
+        window.location.href = androidLink;
+      }
       
-      // Fallback após 500ms se app não abriu
+      // Fallback após 800ms se app não abriu
       setTimeout(() => {
         if (!appOpened) {
           cleanup();
           window.open(instagramWebLink, '_blank');
         }
-      }, 500);
+      }, 800);
     }
     // Desktop: comportamento padrão do link (abre web em nova aba)
   };
