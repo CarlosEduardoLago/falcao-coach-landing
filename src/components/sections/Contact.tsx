@@ -5,17 +5,9 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 export const Contact: React.FC = () => {
   const whatsappLink = 'https://wa.me/message/Z7GXF3B5IGIWD1';
-  const telefone1 = '98178-8707';
-  const telefone2 = '99220-0770';
   const instagramLink = 'https://instagram.com/falcaocoach';
   const titleAnim = useScrollAnimation();
   const cardsAnim = useScrollAnimation();
-  const phonesAnim = useScrollAnimation();
-
-  const formatarTelefoneLink = (telefone: string) => {
-    const numero = telefone.replace(/\D/g, '');
-    return `https://wa.me/55${numero}`;
-  };
 
   return (
     <section id="contato" className="py-16 md:py-24 bg-dark">
@@ -90,70 +82,13 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Telefones */}
-          <div ref={phonesAnim.ref} className="grid md:grid-cols-2 gap-4 sm:gap-6">
-            <div
-              className={`transition-all duration-700 ${
-                phonesAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <Card variant="default" className="p-5 sm:p-6 hover:bg-dark-light transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0 icon-bounce">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-base sm:text-lg font-semibold text-white mb-1">Telefone 1</h4>
-                    <a
-                      href={formatarTelefoneLink(telefone1)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary-start hover:text-primary-end transition-colors text-base sm:text-lg break-all"
-                    >
-                      {telefone1}
-                    </a>
-                  </div>
-                </div>
-              </Card>
-            </div>
-
-            <div
-              className={`transition-all duration-700 delay-200 ${
-                phonesAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <Card variant="default" className="p-5 sm:p-6 hover:bg-dark-light transition-colors">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-secondary rounded-lg flex items-center justify-center flex-shrink-0 icon-bounce">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-base sm:text-lg font-semibold text-white mb-1">Telefone 2</h4>
-                    <a
-                      href={formatarTelefoneLink(telefone2)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-secondary-start hover:text-secondary-end transition-colors text-base sm:text-lg break-all"
-                    >
-                      {telefone2}
-                    </a>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-
           {/* Localização com mapa placeholder */}
           <div
             className={`transition-all duration-700 delay-300 ${
-              phonesAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              cardsAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <Card variant="default" className="p-0 mt-6 overflow-hidden">
+            <Card variant="default" className="p-0 overflow-hidden">
               <div className="relative h-40 sm:h-48 bg-gradient-to-br from-dark-gray to-dark flex items-center justify-center">
                 {/* Mapa estilizado placeholder */}
                 <div className="absolute inset-0 opacity-20">
