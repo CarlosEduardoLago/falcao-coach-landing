@@ -13,9 +13,22 @@ export const Contact: React.FC = () => {
   const handleInstagramClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const url = 'https://www.instagram.com/falcaocoach/';
-    const w = window.open(url, '_blank');
-    if (!w || w.closed) {
-      window.location.href = url;
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+      // Android Chrome: Intent URL abre o app já no perfil; fallback para web
+      const intentUrl = 'intent://instagram.com/_u/falcaocoach/#Intent;package=com.instagram.android;scheme=https;end';
+      window.location.href = intentUrl;
+      setTimeout(() => {
+        if (!document.hidden) {
+          window.open(url, '_blank');
+        }
+      }, 700);
+    } else {
+      const w = window.open(url, '_blank');
+      if (!w || w.closed) {
+        window.location.href = url;
+      }
     }
   };
 
