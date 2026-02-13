@@ -30,8 +30,7 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
       }
       
       // Desenvolvimento local
-      const baseUrl = import.meta.env.BASE_URL || '/';
-      return baseUrl + 'logo-falcao-coach.png';
+      return '/logo-falcao-coach.png';
     };
     
     setLogoPath(detectPath());
@@ -42,7 +41,6 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
     const paths = [
       '/falcao-coach-landing/logo-falcao-coach.png',
       '/logo-falcao-coach.png',
-      `${import.meta.env.BASE_URL || '/'}logo-falcao-coach.png`,
     ];
     
     if (errorCount < paths.length - 1) {
