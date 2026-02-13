@@ -13,16 +13,23 @@ const sizeClasses = {
 };
 
 export const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
-  // BASE_URL do Vite já inclui a barra final quando configurado
-  // Em dev: '/' | No GitHub Pages: '/falcao-coach-landing/'
-  const baseUrl = import.meta.env.BASE_URL;
-  const logoPath = baseUrl + 'logo-falcao-coach.png';
+  // Constrói o caminho da imagem usando BASE_URL do Vite
+  // BASE_URL já inclui a barra final: '/' ou '/falcao-coach-landing/'
+  const getLogoPath = () => {
+    const baseUrl = import.meta.env.BASE_URL || '/';
+    // Remove barra duplicada se houver e adiciona o nome do arquivo
+    return `${baseUrl}${baseUrl.endsWith('/') ? '' : '/'}logo-falcao-coach.png`;
+  };
   
   return (
     <img
-      src={logoPath}
+      src={getLogoPath()}
       alt="Falcão Coach"
       className={`${sizeClasses[size]} object-contain ${className}`}
+      onError={(e) => {
+        // Fallback se a imagem não carregar
+        console.error('Erro ao carregar logo:', e.currentTarget.src);
+      }}
     />
   );
 };
