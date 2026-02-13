@@ -128,7 +128,7 @@ export const Contact: React.FC = () => {
                     </svg>
                   </div>
                   <h4 className="text-lg font-semibold text-white mb-1">Localização</h4>
-                  <p className="text-gray-400">Florianópolis - SC</p>
+                  <p className="text-gray-400">São Luís - MA</p>
                 </div>
               </div>
             </Card>
