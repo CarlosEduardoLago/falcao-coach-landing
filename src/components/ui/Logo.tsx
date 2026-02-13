@@ -13,9 +13,12 @@ const sizeClasses = {
 };
 
 export const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
+  // Usa BASE_URL do Vite para funcionar tanto em desenvolvimento quanto no GitHub Pages
+  const logoPath = `${import.meta.env.BASE_URL}logo-falcao-coach.png`;
+  
   return (
     <img
-      src="/logo-falcao-coach.png"
+      src={logoPath}
       alt="Falcão Coach"
       className={`${sizeClasses[size]} object-contain ${className}`}
     />
