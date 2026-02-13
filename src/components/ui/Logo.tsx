@@ -6,10 +6,10 @@ interface LogoProps {
 }
 
 const sizeClasses = {
-  sm: 'h-10 w-auto',
-  md: 'h-16 w-auto',
-  lg: 'h-24 w-auto',
-  xl: 'h-32 w-auto',
+  sm: 'h-12 w-12',
+  md: 'h-16 w-16',
+  lg: 'h-24 w-24',
+  xl: 'h-32 w-32',
 };
 
 export const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
@@ -57,8 +57,7 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
     <img
       src={logoPath}
       alt="Falcão Coach Logo"
-      className={`${sizeClasses[size]} object-contain ${className}`}
-      style={{ maxHeight: '60px' }}
+      className={`${sizeClasses[size]} rounded-full object-cover shadow-lg border-2 border-white/20 ${className}`}
       onError={handleError}
     />
   );
