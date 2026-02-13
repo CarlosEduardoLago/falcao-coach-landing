@@ -13,22 +13,25 @@ const sizeClasses = {
 };
 
 export const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
-  // Constrói o caminho da imagem usando BASE_URL do Vite
-  // BASE_URL já inclui a barra final: '/' ou '/falcao-coach-landing/'
-  const getLogoPath = () => {
-    const baseUrl = import.meta.env.BASE_URL || '/';
-    // Remove barra duplicada se houver e adiciona o nome do arquivo
-    return `${baseUrl}${baseUrl.endsWith('/') ? '' : '/'}logo-falcao-coach.png`;
-  };
+  // Usa caminho relativo que funciona tanto em dev quanto no GitHub Pages
+  // No Vite, arquivos em public/ são servidos na raiz
+  const logoPath = import.meta.env.BASE_URL + 'logo-falcao-coach.png';
   
   return (
     <img
-      src={getLogoPath()}
-      alt="Falcão Coach"
+      src={logoPath}
+      alt="Falcão Coach Logo"
       className={`${sizeClasses[size]} object-contain ${className}`}
+      style={{ maxHeight: '60px' }}
       onError={(e) => {
-        // Fallback se a imagem não carregar
-        console.error('Erro ao carregar logo:', e.currentTarget.src);
+        console.error('Erro ao carregar logo. Tentando caminho alternativo...');
+        // Fallback: tenta caminho absoluto
+        const img = e.currentTarget;
+        if (!img.src.includes('/falcao-coach-landing/')) {
+          img.src = '/falcao-coach-landing/logo-falcao-coach.png';
+        } else {
+          img.src = '/logo-falcao-coach.png';
+        }
       }}
     />
   );
