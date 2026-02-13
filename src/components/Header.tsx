@@ -68,13 +68,10 @@ export const Header: React.FC = () => {
             {/* Logo */}
             <button
               onClick={() => scrollToSection('hero')}
-              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+              className="hover:opacity-80 transition-opacity"
               aria-label="Ir para o topo"
             >
               <Logo size="sm" />
-              <span className="text-xl font-bold text-white hidden sm:block">
-                Falcão Coach
-              </span>
             </button>
 
             {/* Desktop Navigation */}

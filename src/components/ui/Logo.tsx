@@ -16,7 +16,7 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
   return (
     <img
       src="/logo-falcao-coach.png"
-      alt="Falcão Coach Logo"
+      alt="Falcão Coach"
       className={`${sizeClasses[size]} object-contain ${className}`}
     />
   );
