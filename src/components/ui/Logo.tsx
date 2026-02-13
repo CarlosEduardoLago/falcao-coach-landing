@@ -13,8 +13,10 @@ const sizeClasses = {
 };
 
 export const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
-  // Usa BASE_URL do Vite para funcionar tanto em desenvolvimento quanto no GitHub Pages
-  const logoPath = `${import.meta.env.BASE_URL}logo-falcao-coach.png`;
+  // BASE_URL do Vite já inclui a barra final quando configurado
+  // Em dev: '/' | No GitHub Pages: '/falcao-coach-landing/'
+  const baseUrl = import.meta.env.BASE_URL;
+  const logoPath = baseUrl + 'logo-falcao-coach.png';
   
   return (
     <img
